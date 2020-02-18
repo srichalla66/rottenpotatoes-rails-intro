@@ -11,7 +11,6 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @all_ratings = Moive.all_ratings
     
   #  if params[:ratings]
   #    @movies = Movie.where(rating: ratings)
