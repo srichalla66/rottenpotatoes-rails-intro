@@ -11,13 +11,14 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @all_ratings = ['G','PG','PG-13','R']
+    @all_ratings = Moive.all_ratings
     
-    if params[:ratings]
-      @movies = Movie.where(rating: ratings)
-    else
-      @movies = Movie.order(params[:sort_by])
-    end
+  #  if params[:ratings]
+  #    @movies = Movie.where(rating: ratings)
+  #  else
+  #    @movies = Movie.order(params[:sort_by])
+  #  end
+    @movies = Movie.order(params[:sort_by])
     
   end
 
