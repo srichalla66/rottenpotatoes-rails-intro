@@ -22,6 +22,17 @@ class MoviesController < ApplicationController
       @sort_by = session[:sort_by]
     end
     
+    if session[:ratings].nil? and params[:ratings].nil?
+      @ratings = @all_ratings
+    elsif session[:ratings] and params[:ratings].nil?
+      @ratings = session[:ratings]
+    elsif params[:ratings]
+      @ratings = params[:ratings]
+      session[:ratings] = params[:ratings]
+    else
+      @sort_by = session[:sort_by]
+    end
+    
     if params[:ratings]
       @movies = Movie.where(rating: params[:ratings].keys).order(@sort_by)
     else
