@@ -13,9 +13,12 @@ class MoviesController < ApplicationController
   def index
     @all_ratings = ['G','PG','PG-13','R']
     
-    @sort_by = session[:sort_by]
-    if params[:sort_by]
+    if session[:sort_by].nil? and params[:sort_by].nil?
+      @sort_by = nil
+    elsif params[:sort_by]
       @sort_by = params[:sort_by]
+    else
+      @sort_by = session[:sort_by]
     end
     
     if params[:ratings]
