@@ -30,14 +30,10 @@ class MoviesController < ApplicationController
       @ratings = params[:ratings]
       session[:ratings] = params[:ratings]
     else
-      @sort_by = session[:sort_by]
+      @ratings = session[:ratings]
     end
     
-    if params[:ratings]
-      @movies = Movie.where(rating: params[:ratings].keys).order(@sort_by)
-    else
-      @movies = Movie.order(@sort_by)
-    end
+    @movies = Movie.where(rating: @ratings.keys).order(@sort_by)
     
   end
 
