@@ -20,6 +20,7 @@ class MoviesController < ApplicationController
       session[:sort_by] = params[:sort_by]
     else
       @sort_by = session[:sort_by]
+      session.delete(:sort_by)
     end
     
     if session[:ratings].nil? and params[:ratings].nil?
@@ -31,6 +32,7 @@ class MoviesController < ApplicationController
       session[:ratings] = params[:ratings]
     else
       @ratings = session[:ratings]
+      session.delete(:ratings)
     end
     
     @movies = Movie.where(rating: @ratings.keys).order(@sort_by)
