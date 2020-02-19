@@ -17,6 +17,7 @@ class MoviesController < ApplicationController
       @sort_by = nil
     elsif params[:sort_by]
       @sort_by = params[:sort_by]
+      session[:sort_by] = params[:sort_by]
     else
       @sort_by = session[:sort_by]
     end
